@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
-  get 'users/create'
-  get 'users/new'
+  resources :users, only: [:index, :show, :create, :new]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "users#index"
+  root "users#index"
 end
