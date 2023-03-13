@@ -34,7 +34,7 @@
 
 # 📖 **Recipe App** <a name="about-project"></a>
 
-**Recipe app** is an application that allows you to keep track of recipes, inventory and ingredients, generate shoping lists for ingredients you lack for a recipe and share your recipes (depending on their public or private status).
+**Recipe App** is an application that allows you to keep track of recipes, inventory and ingredients, generate shoping lists for ingredients you lack for a recipe and share your recipes (depending on their public or private status).
 
 ## 🛠 Built With <a name="built-with"></a>
 
