@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
   def index
-    @foods = Food.all
+    @user = current_user
+    @user_foods = @user.authored_foods
   end
 
   def new
@@ -8,7 +9,7 @@ class FoodsController < ApplicationController
   end
 
   def create
-    @food = Food.new(form_sanitizer.merge(user: current_user))
+    @food = Food.new(form_sanitizer.merge(author_id: current_user.id))
 
     if @food.save
       redirect_to foods_url
@@ -18,7 +19,7 @@ class FoodsController < ApplicationController
   end
 
   def destroy
-    @food = Post.find(params[:id])
+    @food = Food.find(params[:id])
     @food.destroy
     redirect_to foods_url
   end
