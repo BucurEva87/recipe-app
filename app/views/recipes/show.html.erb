@@ -1,2 +1,41 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<main class="show-recipe">
+  <h2><%= @recipe.name %></h2>
+  <div>
+    <p><span>Preparation Time:</span> <%= @recipe.preparation_time %>hour</p>
+  </div>
+  <div>
+    <p><span>Cooking time:</span> <%= @recipe.cooking_time %>hours</p>
+    <p><span>Description:</span> <br/> <%= @recipe.description %></p>
+  </div>
+
+  <div>
+    <%= button_to 'Generate Shopping List', method: :get %>
+<% if can?(:manage, Food) %>
+  <%= button_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe.id), method: :get %>
+<% end %>
+ </div>
+
+  <hr/>
+  <% if @foods.present? %>
+    <table class="foods">
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Value</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods.each do |food| %>
+          <tr>
+            <td><%= food.name %></td>
+            <td><%= food.quantity %> <%= food.measurement_unit %></td>
+            <td>$<%= food.price %></td>
+            <td><div class='delete-food-btn'><%= button_to 'Delete', food_url(food), method: :delete %></div></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</main>
