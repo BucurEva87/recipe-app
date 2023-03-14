@@ -1,4 +1,6 @@
 class FoodsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @user = current_user
     @user_foods = @user.authored_foods
