@@ -1,8 +1,8 @@
 class Ability
   include CanCan::Ability
+
   def initialize(user)
-    can :add_new_food, Recipe do |recipe|
-      recipe.user == user
-    end
+    user ||= User.new 
+    can :manage, Food, author_id: user.id
   end
 end

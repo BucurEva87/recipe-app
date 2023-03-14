@@ -11,8 +11,11 @@ class FoodsController < ApplicationController
   end
 
   def create
-    @food = Food.new(form_sanitizer.merge(author_id: current_user.id))
+  @food = Food.new(form_sanitizer)
+  @food.author_id = current_user.id
 
+      authorize! :create, @food
+      
     if @food.save
       redirect_to foods_path
     else
@@ -26,9 +29,12 @@ class FoodsController < ApplicationController
     redirect_to foods_path
   end
 
-  private
+private
 
-  def form_sanitizer
-    params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
-  end
+def form_sanitizer
+  params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
+end
+
+
+
 end
