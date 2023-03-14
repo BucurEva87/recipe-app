@@ -1,4 +1,6 @@
+<% if can? :create, Food %>
 <%= link_to "Add Food", new_food_path, class: "add-food-btn" %>
+<% end %>
 <div class='food-container'>
   <div class='food-header'>
     <h2>Food</h2>
