@@ -14,7 +14,7 @@ class FoodsController < ApplicationController
     @food = Food.new(form_sanitizer.merge(author_id: current_user.id))
 
     if @food.save
-      redirect_to foods_url
+      redirect_to foods_path
     else
       render :new
     end
@@ -23,7 +23,7 @@ class FoodsController < ApplicationController
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
-    redirect_to foods_url
+    redirect_to foods_path
   end
 
   private
