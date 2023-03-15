@@ -1,2 +1,44 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<h1><%= @recipe.name %></h1>
+
+  <div>
+    <p><span>Preparation Time:</span> <%= @recipe.preparation_time %>hour</p>
+  </div>
+  <div>
+    <p><span>Cooking time:</span> <%= @recipe.cooking_time %>hours</p>
+    <p><span>Description:</span> <br/> <%= @recipe.description %></p>
+  </div>
+
+<h2>Foods in Recipe</h2>
+
+<div>
+  <%= button_to 'Generate Shopping List', method: :get %>
+  <% if can?(:manage, Food) %>
+  <%= button_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe.id), method: :get %>
+  <% end %>
+</div>
+
+<hr/>
+<% if @foods.present? %>
+  <table class="foods">
+        <% @foods.each do |food| %>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value (in $)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= @recipe.recipe_foods.where(food_id: food.id).first.quantity %> <%= food.measurement_unit %></td>
+          <td><%= (@recipe.recipe_foods.where(food_id: food.id).first.quantity).to_i * food.price %></td>
+          <td><div class='delete-food-btn'><%= button_to 'Delete', recipe_recipe_food_path(@recipe, @recipe.recipe_foods.where(food_id: food.id).first.id), method: :delete %></div></td>
+        </tr>
+
+    </tbody>
+          <% end %>
+  </table>
+<% end %>
