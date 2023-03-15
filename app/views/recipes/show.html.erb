@@ -1,5 +1,5 @@
-<main class="show-recipe">
-  <h2><%= @recipe.name %></h2>
+<h1><%= @recipe.name %></h1>
+
   <div>
     <p><span>Preparation Time:</span> <%= @recipe.preparation_time %>hour</p>
   </div>
@@ -8,34 +8,37 @@
     <p><span>Description:</span> <br/> <%= @recipe.description %></p>
   </div>
 
-  <div>
-    <%= button_to 'Generate Shopping List', method: :get %>
-<% if can?(:manage, Food) %>
-  <%= button_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe.id), method: :get %>
-<% end %>
- </div>
+<h2>Foods in Recipe</h2>
 
-  <hr/>
-  <% if @foods.present? %>
-    <table class="foods">
-      <thead>
-        <tr>
-          <th>Food</th>
-          <th>Quantity</th>
-          <th>Value</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @foods.each do |food| %>
-          <tr>
-            <td><%= food.name %></td>
-            <td><%= food.quantity %> <%= food.measurement_unit %></td>
-            <td>$<%= food.price %></td>
-            <td><div class='delete-food-btn'><%= button_to 'Delete', food_url(food), method: :delete %></div></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div>
+  <%= button_to 'Generate Shopping List', method: :get %>
+  <% if can?(:manage, Food) %>
+  <%= button_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe.id), method: :get %>
   <% end %>
-</main>
+</div>
+
+<hr/>
+<% if @foods.present? %>
+  <table class="foods">
+        <% @foods.each do |food| %>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value (in $)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= @recipe.recipe_foods.where(food_id: food.id).first.quantity %> <%= food.measurement_unit %></td>
+          <td><%= (@recipe.recipe_foods.where(food_id: food.id).first.quantity).to_i * food.price %></td>
+          <td><div class='delete-food-btn'><%= button_to 'Delete', recipe_recipe_food_path(@recipe, @recipe.recipe_foods.where(food_id: food.id).first.id), method: :delete %></div></td>
+        </tr>
+
+    </tbody>
+          <% end %>
+  </table>
+<% end %>
