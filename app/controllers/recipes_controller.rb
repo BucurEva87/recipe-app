@@ -1,8 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-
-  
+  before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
     @user = current_user
@@ -13,7 +11,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.includes(:recipe_foods).find(params[:id])
     @foods = @recipe.foods
     p @recipe.recipe_foods
- end
+  end
 
   def create
     @recipe = Recipe.new(form_sanitizer.merge(author_id: current_user.id))
@@ -44,7 +42,8 @@ class RecipesController < ApplicationController
   end
 
   private
-    def set_recipe
+
+  def set_recipe
     @recipe = Recipe.find(params[:id])
   end
 

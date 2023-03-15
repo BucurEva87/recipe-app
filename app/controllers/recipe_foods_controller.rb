@@ -20,10 +20,10 @@ class RecipeFoodsController < ApplicationController
     @recipe_food.food = @food
 
     if @recipe_food.save
-      redirect_to recipe_path(@recipe), notice: "Food added to recipe"
+      redirect_to recipe_path(@recipe), notice: 'Food added to recipe'
     else
-      flash['alert'] = "Something went wrong and food was not added"
-      render :new, locals: { recipe_food: recipe_food }, notice: "Something went wrong and food was not added"
+      flash['alert'] = 'Something went wrong and food was not added'
+      render :new, locals: { recipe_food: }, notice: 'Something went wrong and food was not added'
     end
   end
 
@@ -33,7 +33,7 @@ class RecipeFoodsController < ApplicationController
     # @recipe_food = RecipeFood.find_by(recipe_id: params[:recipe_id], food_id: params[:id])
     @recipe_food = RecipeFood.find(params[:id])
     @recipe_food.destroy
-    redirect_to recipe_path(@recipe), notice: "Food removed from recipe"
+    redirect_to recipe_path(@recipe), notice: 'Food removed from recipe'
   end
 
   private
