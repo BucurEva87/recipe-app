@@ -1,0 +1,27 @@
+@import '../partials/variables';
+
+#mainNavigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 3rem;
+  background-color: $gray4;
+
+  a {
+    &:hover,
+    &:active {
+      color: lighten($linkColor, 10%);
+    }
+  }
+
+  ul {
+    display: flex;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+}
