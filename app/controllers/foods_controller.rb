@@ -17,15 +17,22 @@ class FoodsController < ApplicationController
     authorize! :create, @food
 
     if @food.save
+      success('Food was created')
       redirect_to foods_path
     else
+      failure('food was not created')
       render :new
     end
   end
 
   def destroy
     @food = Food.find(params[:id])
-    @food.destroy
+    
+    if @food.destroy
+      success('Food was destroyed')
+    else
+      failure('food was not destroyed')
+    end
     redirect_to foods_path
   end
 

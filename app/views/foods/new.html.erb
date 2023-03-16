@@ -1,20 +1,22 @@
-<h1>Add your favourite food</h1>
-<%= form_with model: @food, url: foods_path do |f| %>
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :measurement_unit %><br>
-    <%= f.text_field :measurement_unit %>
-  </div>
-  <div>
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div>
-    <%= f.label :quantity %><br>
-    <%= f.text_field :quantity %>
-  </div>
-  <%= f.submit "Add Food" %>
-<% end %>
+<div id="foods-new" class="section-wrapper">
+  <h1>Add your favourite food</h1>
+  <%= form_with model: @food, url: foods_path do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :measurement_unit %>
+      <%= f.text_field :measurement_unit %>
+    </div>
+    <div>
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
+    <div>
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity %>
+    </div>
+    <%= f.submit "Add Food" %>
+  <% end %>
+</div>

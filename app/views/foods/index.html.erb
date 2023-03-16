@@ -1,22 +1,24 @@
-<% if can? :create, Food %>
-<%= link_to "Add Food", new_food_path, class: "add-food-btn" %>
-<% end %>
-<div class='food-container'>
-  <div class='food-header'>
-    <h2>Food</h2>
-    <h2>Measurement unit</h2>
-    <h2>Unit Price</h2>
-    <h2>Actions</h2>
+<div id="foods-index" class="section-wrapper">
+  <% if can? :create, Food %>
+  <%= link_to "Add Food", new_food_path, class: "add-food-btn" %>
+  <% end %>
+  <div class='food-container'>
+    <div class='food-header'>
+      <h2>Food</h2>
+      <h2>Measurement unit</h2>
+      <h2>Unit Price</h2>
+      <h2>Actions</h2>
+    </div>
+    <ul>
+      <% @user_foods.each do |food| %>
+        <li class='food-items'>
+          <h3><%= food.name %></h3>
+          <h3><%= food.measurement_unit %></h3>
+          <h3><%= food.price %></h3>
+          <h3><%= food.quantity %></h3>
+          <%= button_to 'Delete', food_url(food), method: :delete %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-  <ul>
-    <% @user_foods.each do |food| %>
-      <li class='food-items'>
-        <h3><%= food.name %></h3>
-        <h3><%= food.measurement_unit %></h3>
-        <h3><%= food.price %></h3>
-        <h3><%= food.quantity %></h3>
-        <%= button_to 'Delete', food_url(food), method: :delete %>
-      </li>
-    <% end %>
-  </ul>
 </div>

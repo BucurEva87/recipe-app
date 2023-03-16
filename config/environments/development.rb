@@ -71,4 +71,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # For hot reloading purposes (development)
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
+  config.assets.debug = true
+  config.assets.check_precompiled_asset = false
+
+  # Reload the browser automatically whenever files change
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
 end

@@ -1,0 +1,39 @@
+@import '../partials/variables';
+@import '../partials/public_slider';
+
+#recipes-index {
+  .recipes-container {
+    margin-bottom: 5rem;
+
+    .recipe {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      border: solid 0.2rem $black;
+      margin-bottom: 2rem;
+
+      div.title-info {
+        min-width: 30%;
+        margin-right: 2rem;
+        align-self: center;
+
+        h2 {
+          margin-bottom: 1rem;
+          font-size: 2.4rem;
+          font-weight: 500;
+        }
+      }
+
+      p {
+        flex-grow: 1;
+        text-align: justify;
+
+        &::first-letter {
+          font-style: italic;
+          color: $gray3;
+          font-size: x-large;
+        }
+      }
+    }
+  }
+}
