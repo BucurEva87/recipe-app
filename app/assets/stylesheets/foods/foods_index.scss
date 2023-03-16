@@ -2,5 +2,46 @@
 @import '../partials/section_wrapper';
 
 #foods-index {
+.add-food-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: $btn-background;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-food-btn:hover {
+    background-color: #2980b9;
+}
+.food-container {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.food-container th,
+.food-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.food-container th {
+  background-color: #f2f2f2;
+}
+
+.food-container tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.food-container tr:hover {
+  background-color: #ddd;
+}
 
 }
