@@ -2,5 +2,47 @@
 @import '../partials/section_wrapper';
 
 #foods-new {
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+form {
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+input[type="text"], input[type="submit"] {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  font-size: 1.2em;
+  width: 100%;
+  box-sizing: border-box;
+}
+ form > div:last-child{
+  width: 70%;
+ }
+input[type="submit"] {
+  background-color: $btn-background;
+  color: $white;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  width: 20%;
+  
+}
 
 }
