@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   helper RecipesHelper
 
   before_action :authenticate_user!
+  before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
     @user = current_user
@@ -85,6 +86,10 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 
   def form_sanitizer
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
