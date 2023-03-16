@@ -1,26 +1,22 @@
-<div id="recipes-new" class="section-wrapper form">
+<div id="recipes-new" class="section-wrapper">
   <h1>Add your favourite recipe</h1>
-  <%= form_with model: @recipe, url: recipes_path do |f| %>
+  <%= form_with model: @recipe, url: recipes_path, class: 'section-form-new' do |f| %>
     <div>
-      <%= f.label :name %><br>
+      <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
     <div>
-      <%= f.label :preparation_time %><br>
+      <%= f.label :preparation_time %>
       <%= f.number_field :preparation_time %>
     </div>
     <div>
-      <%= f.label :cooking_time %><br>
+      <%= f.label :cooking_time %>
       <%= f.number_field :cooking_time %>
     </div>
     <div>
-      <%= f.label :description %><br>
+      <%= f.label :description %>
       <%= f.text_area :description %>
     </div>
-    <div>
-      <%= f.label :public %><br>
-      <%= f.range_field :public, min: 0, max: 1, step: 1 %>
-    </div>
-    <%= f.submit "Add Recipe" %>
+    <%= f.submit "Add Recipe", class: 'btn-submit' %>
   <% end %>
 </div>

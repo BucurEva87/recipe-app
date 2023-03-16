@@ -1,0 +1,16 @@
+<div id="recipe_foods-edit" class="section-wrapper">
+  <%# render 'partials/navigation'%>
+  <h1>Sure! Let's change the <%= @food.name %> ingredient!</h1>
+  
+  <%= form_with model: @recipeFoods, local: true, url: recipe_recipe_food_path(@recipe, @recipe_food), class: 'section-form-new', method: :put do |f| %>
+    <div>
+      <%= f.label :food_id %>
+      <%= f.collection_select :food_id, @foods.order(:name), :id, :name, selected: @food.id %>
+    </div>
+    <div>
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity, placeholder: 'Quantity', required: true, value: @recipe_food.quantity %>
+    </div>
+    <%= f.submit "Modify food", class: 'btn-submit' %>
+  <% end %>
+</div>

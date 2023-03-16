@@ -1,0 +1,23 @@
+@import 'variables';
+
+.btn-submit,
+input[type=submit][name=commit] {
+  all: unset;
+  position: absolute;
+  right: 1vw;
+  font-weight: bold;
+  border: solid 0.2rem $black;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: $white;
+  box-shadow: 0.4rem 0.4rem 0.3rem black;
+  transition: box-shadow 0.05s;
+
+  &:hover {
+    box-shadow: 0.2rem 0.2rem 0.2rem black;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}

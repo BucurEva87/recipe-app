@@ -1,19 +1,17 @@
 <div id="recipes-index" class="section-wrapper">
-  <%= link_to "Add Recipe", new_recipe_path, class: "add-recipe-btn" %>
-
   <div class="recipes-container">
     <% @recipes.each do |recipe| %>
       <div class="recipe">
-        <div>
-              <%= link_to recipe_path(recipe) do %>
-
-          <h2><%= recipe.name %></h2>
-          <% end %> 
-
-          <%= button_to 'Remove', recipe_url(recipe), method: :delete, class: 'btn-remove' %>
+        <div class="title-info">
+          <h2><%= link_to recipe.name, recipe_path(recipe), class: 'heading-link' %></h2>
+          <% if can? :destroy, recipe %>
+            <%= button_to 'Remove', recipe_path(recipe), method: :delete, class: 'btn-link btn-remove' %>
+          <% end %>
         </div>
         <p><%= recipe.description %></p>
       </div>
     <% end %>
   </div>
+
+  <%= link_to "Add Recipe", new_recipe_path %>
 </div>

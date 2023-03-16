@@ -1,0 +1,37 @@
+@import '../partials/variables';
+@import '../partials/public_slider';
+
+#recipes-public {
+  .recipes-container {
+    margin-bottom: 5rem;
+
+    .recipe {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      border: solid 0.2rem $black;
+      margin-bottom: 2rem;
+
+      div.title-info {
+        min-width: 50%;
+        margin-right: 2rem;
+        align-self: center;
+
+        h2 {
+          margin-bottom: 1rem;
+          font-size: 2.4rem;
+          font-weight: 500;
+        }
+      }
+
+      div.budget-info {
+        flex-grow: 1;
+        text-align: center;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  }
+}

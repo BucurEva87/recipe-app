@@ -1,0 +1,48 @@
+@import '../partials/variables';
+
+.section-wrapper {
+  width: 60vw;
+  padding: 2rem 0;
+  text-align: center;
+  position: relative;
+  align-self: center;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  textarea {
+    height: 10rem;
+  }
+
+  form[class^=section-form] {
+    width: 100%;
+    position: relative;
+
+    .field_with_errors {
+      max-width: 100% !important;
+    }
+
+    > div,
+    .field_with_errors {
+      display: flex;
+      width: 100%;
+      margin-bottom: 1rem;
+
+      label {
+        width: 30%;
+        text-align: center;
+        align-self: center;
+        font-weight: bold;
+      }
+
+      select,
+      textarea,
+      input:not([type=range]) {
+        flex-grow: 1;
+        padding: 0.8rem;
+      }
+    }
+  }
+}

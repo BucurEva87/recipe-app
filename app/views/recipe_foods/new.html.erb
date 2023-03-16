@@ -1,11 +1,16 @@
-<section class="section-full-page">
-  <div class="recipe form-container">
-    <h1>Add Ingredient</h1>
-    <%= render "form" %>
-    <%= link_to recipe_path(params[:recipe_id]) do%>
-      <button class="back-to-recipes">Back to Recipe</button>
-    <% end %>
-  </div>
-</section>
-
+<div id="recipe_foods-new" class="section-wrapper">
+  <%# render 'partials/navigation'%>
+  <h1>Let's add another ingredient to <%= link_to @recipe.name, recipe_path(@recipe), class: 'heading-link' %></h1>
   
+  <%= form_with model: @recipeFoods, local: true, url:  recipe_recipe_foods_path, class: 'section-form-new' do |f| %>
+    <div>
+      <%= f.label :food_id %>
+      <%= f.collection_select :food_id, @foods.order(:name), :id, :name %>
+    </div>
+    <div>
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity, placeholder: 'Quantity', required: true %>
+    </div>
+    <%= f.submit "Add food", class: 'btn-submit' %>
+  <% end %>
+</div>

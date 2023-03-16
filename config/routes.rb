@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  get '/public_recipes', to: 'recipes#public_recipes'
+  get '/general_shopping_list', to: 'recipes#general_shopping_list'
+
   resources :users, only: [:index, :show, :create, :new]
-  resources :recipes do
-    resources :foods #, only: [:index, :show, :create]
-    resources :recipe_foods, only: [:new, :create, :destroy]
+  resources :foods, only: [:index, :new, :create, :destroy]
+  resources :recipes, only: [:index, :show, :new, :create, :edit, :destroy] do
+    resources :recipe_foods
   end
-  resources :foods, only: [:index, :show, :new, :create, :destroy]
+  resources :recipes do
+    patch :toggle_public, on: :member
+  end
   
-  # Defines the root path route ("/")
   root "users#index"
 end

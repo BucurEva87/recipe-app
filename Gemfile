@@ -33,6 +33,9 @@ gem 'devise'
 # CanCanCan gem for authorization
 gem 'cancancan'
 
+# SASS gem for Rails
+gem 'sassc-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -72,6 +75,12 @@ group :development do
 
   # Mock up confirmation mail sending from Devise
   gem 'letter_opener'
+
+  # Hot reloading
+  gem 'guard'
+  gem 'guard-livereload'
+  gem 'listen', '~> 3.3'
+  gem 'rack-livereload'
 end
 
 group :test do

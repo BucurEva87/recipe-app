@@ -20,16 +20,23 @@ class FoodsController < ApplicationController
     authorize! :create, @food
 
     if @food.save
-      redirect_to foods_path, notice: 'Food was successfully created'
+      success('Food was created')
+      redirect_to foods_path
     else
+      failure('food was not created')
       render :new
     end
   end
 
   def destroy
     @food = Food.find(params[:id])
-    @food.destroy
-    redirect_to foods_path, notice: 'Food was successfully destroyed'
+
+    if @food.destroy
+      success('Food was destroyed')
+    else
+      failure('food was not destroyed')
+    end
+    redirect_to foods_path
   end
 
   private
