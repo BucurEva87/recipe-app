@@ -77,10 +77,10 @@ group :development do
   gem 'letter_opener'
 
   # Hot reloading
-  gem 'rack-livereload'
   gem 'guard'
   gem 'guard-livereload'
   gem 'listen', '~> 3.3'
+  gem 'rack-livereload'
 end
 
 group :test do

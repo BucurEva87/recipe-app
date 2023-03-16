@@ -57,10 +57,13 @@ class RecipesController < ApplicationController
     recipes.each do |recipe|
       recipe.recipe_foods.each do |recipe_food|
         food = foods.find { |f| f.id == recipe_food.food_id }
-        
+
         difference = recipe_food.quantity.to_i - food.quantity.to_i
 
-        @missing_foods << Food.new(name: food.name, measurement_unit: food.measurement_unit, price: food.price * difference, quantity: difference) if difference > 0
+        if difference.positive?
+          @missing_foods << Food.new(name: food.name, measurement_unit: food.measurement_unit,
+                                     price: food.price * difference, quantity: difference)
+        end
 
         @number_of_foods += [difference, 0].max
         @total_price += [difference * food.price, 0].max
@@ -72,7 +75,7 @@ class RecipesController < ApplicationController
 
   def toggle_public
     @recipe = Recipe.find(params[:id])
-    
+
     if @recipe.update(public: !@recipe.public)
       success("The privacy of recipe #{@recipe.name} was updated")
     else

@@ -4,8 +4,8 @@ module RecipesHelper
     minutes = minutes % 60
 
     duration = "#{hours} hour"
-    duration << "s" if hours > 1
-    duration << " #{minutes} minutes" if minutes > 0
+    duration << 's' if hours > 1
+    duration << " #{minutes} minutes" if minutes.positive?
 
     duration
   end

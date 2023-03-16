@@ -28,7 +28,7 @@ class RecipeFoodsController < ApplicationController
       redirect_to recipe_path(@recipe)
     else
       failure('food was not added')
-      render :new, locals: { recipe_food: recipe_food }
+      render :new, locals: { recipe_food: }
     end
   end
 

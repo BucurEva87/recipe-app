@@ -27,7 +27,7 @@ class FoodsController < ApplicationController
 
   def destroy
     @food = Food.find(params[:id])
-    
+
     if @food.destroy
       success('Food was destroyed')
     else
