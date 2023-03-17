@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :food do
-    name { "Dragon Fruit" }
+    name { 'Dragon Fruit' }
     measurement_unit { 'lbs' }
     price { 1 }
     quantity { 100 }

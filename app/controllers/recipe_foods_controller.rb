@@ -11,9 +11,10 @@ class RecipeFoodsController < ApplicationController
     # We don't really want to let the user add twice the same food in the recipe
     @foods = current_user.authored_foods.where.not(id: @recipe.foods.pluck(:id))
     # If there are no ingredient left out of the recipy, we notify
-    if @foods.empty?
+    unless @foods.present?
       failure('This recipe already contains all the ingredients availalbe. Maybe add more?', prefix: nil)
-      redirect_to recipe_path(@recipe)
+      flash[:failure] = 'This recipe already contains all the ingredients availalbe. Maybe add more?'
+      redirect_to recipe_path(@recipe) and return
     end
     @recipe_food = RecipeFood.new
   end
@@ -28,7 +29,7 @@ class RecipeFoodsController < ApplicationController
       redirect_to recipe_path(@recipe)
     else
       failure('food was not added')
-      render :new, locals: { recipe_food: }
+      render :new
     end
   end
 

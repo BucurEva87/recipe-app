@@ -1,29 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe FoodsController, type: :controller do
-describe "GET #index" do
-  it "returns http success" do
-    user = create(:user)
-    sign_in user
+  describe 'GET #index' do
+    it 'returns http success' do
+      user = create(:user)
+      sign_in user
 
-    get :index
+      get :index
 
-    expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:success)
+    end
+
+    it "assigns the current user's foods to @user_foods" do
+      user = create(:user)
+      sign_in user
+      food = create(:food, author: user)
+
+      get :index
+
+      expect(assigns(:user_foods)).to eq([food])
+    end
   end
 
-  it "assigns the current user's foods to @user_foods" do
-    user = create(:user)
-    sign_in user
-    food = create(:food, author: user)
-
-    get :index
-
-    expect(assigns(:user_foods)).to eq([food])
-  end
-end
-
-  describe "GET #new" do
-    it "returns http success" do
+  describe 'GET #new' do
+    it 'returns http success' do
       user = create(:user)
       sign_in user
 
@@ -32,7 +32,7 @@ end
       expect(response).to have_http_status(:success)
     end
 
-    it "assigns a new food to @food" do
+    it 'assigns a new food to @food' do
       user = create(:user)
       sign_in user
 
@@ -42,18 +42,18 @@ end
     end
   end
 
-  describe "POST #create" do
-    context "with valid attributes" do
-      it "creates a new food" do
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      it 'creates a new food' do
         user = create(:user)
         sign_in user
 
-        expect {
+        expect do
           post :create, params: { food: attributes_for(:food) }
-        }.to change(Food, :count).by(1)
+        end.to change(Food, :count).by(1)
       end
 
-      it "assigns the author to the current user" do
+      it 'assigns the author to the current user' do
         user = create(:user)
         sign_in user
 
@@ -62,7 +62,7 @@ end
         expect(assigns(:food).author).to eq(user)
       end
 
-      it "redirects to the foods index page" do
+      it 'redirects to the foods index page' do
         user = create(:user)
         sign_in user
 
@@ -72,40 +72,40 @@ end
       end
     end
 
-    context "with invalid attributes" do
-      it "does not create a new food" do
+    context 'with invalid attributes' do
+      it 'does not create a new food' do
         user = create(:user)
         sign_in user
 
-        expect {
-          post :create, params: { food: attributes_for(:food, name: "") }
-        }.not_to change(Food, :count)
+        expect do
+          post :create, params: { food: attributes_for(:food, name: '') }
+        end.not_to change(Food, :count)
       end
 
-      it "re-renders the new template" do
+      it 're-renders the new template' do
         user = create(:user)
         sign_in user
 
-        post :create, params: { food: attributes_for(:food, name: "") }
+        post :create, params: { food: attributes_for(:food, name: '') }
 
         expect(response).to render_template(:new)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the food" do
+  describe 'DELETE #destroy' do
+    it 'destroys the food' do
       user = create(:user)
       food = create(:food, author: user)
 
       sign_in user
 
-      expect {
+      expect do
         delete :destroy, params: { id: food.id }
-      }.to change(Food, :count).by(-1)
+      end.to change(Food, :count).by(-1)
     end
 
-    it "redirects to the foods index page" do
+    it 'redirects to the foods index page' do
       user = create(:user)
       food = create(:food, author: user)
 
