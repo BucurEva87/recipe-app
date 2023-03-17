@@ -21,25 +21,26 @@ input[type=submit][name=commit] {
     box-shadow: none;
   }
 }
-  .add-food-btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    font-size: 1.6rem;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: #fff !important;
-    background-color: $btn-background;
-    border: none;
-    border-radius: 0.4rem;
-    cursor: pointer;
 
-    &:hover {
-      background-color: #2980b9;
-    }
+.add-food-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff !important;
+  background-color: $btn-background;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2980b9;
   }
+}
 
-  .sign-out {
+.sign-out {
   display: inline-block;
   background-color: $red;
   color: #fff !important;
@@ -52,9 +53,6 @@ input[type=submit][name=commit] {
   margin-left: 5px;
 
   &:hover {
-  background-color: #900;
+    background-color: #900;
+  }
 }
-
-}
-
-
