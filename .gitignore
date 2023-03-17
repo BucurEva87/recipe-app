@@ -32,3 +32,4 @@
 
 # Ignore the database.yml (for now)
 /config/database.yml
+node_modules/
