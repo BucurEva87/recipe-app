@@ -1,17 +1,15 @@
 <nav id="mainNavigation">
   <% unless current_user %>
-    Welcome, Guest! 
-    Please <%= link_to "Log in", new_session_path(:user) %> 
-    or 
-    <%= link_to "Sign up", new_registration_path(:user) %> !
+    <p class="welcome-message">Welcome, Guest! Please <%= link_to "Log in", new_session_path(:user) %> or <%= link_to "Sign up", new_registration_path(:user) %>!</p>
   <% else %>
-    Welcome, <%= current_user.name %> ! || 
-    <ul>
-      <li><%# link_to 'Foods', foods_path %></li>
+    <p class="welcome-message">Welcome, <%= current_user.name %>!</p>
+    <ul class="nav-links">
+      <li><%= link_to 'Foods', foods_path %></li>
       <li><%= link_to 'Recipes', recipes_path %></li>
       <li><%= link_to 'Public recipes', public_recipes_path %></li>
       <li><%= link_to 'Shopping List', general_shopping_list_path %></li>
-      <li> || </li>
-    </ul><%= link_to "Sign out", destroy_user_session_path %>
+      <li class="divider">||</li>
+    </ul>
+    <%= link_to "Sign out", destroy_user_session_path, class: "sign-out-link" %>
   <% end %>
 </nav>
