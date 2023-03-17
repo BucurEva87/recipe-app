@@ -68,7 +68,8 @@
     tbody {
       tr {
         td {
-          padding: 1.2rem;
+          padding: 0.2rem 1.2rem;
+          border: solid 0.1rem #ddd;
 
           .actions {
             button {
@@ -80,6 +81,14 @@
               }
             }
           }
+        }
+
+        &:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+
+        &:hover {
+          background-color: #ddd;
         }
       }
     }

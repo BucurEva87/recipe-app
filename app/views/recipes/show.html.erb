@@ -24,7 +24,6 @@
   <%= form_with(model: @recipe, url: toggle_public_recipe_path(@recipe), local: true) do |form| %>
     <div class="form-group">
       <div class="slider-container">
-        <%# form.range_field :public, min: 0, max: 1, step: 1, class: 'slider' %>
         <div class="slider private-public-slider">
           <div class="button-box">
             <div id="btn" style="left: <%= (@recipe.public ? 1 : 0) * 9 %>rem"></div>
@@ -58,7 +57,7 @@
   <div class="actions">
     <%= link_to 'Generate shopping list', general_shopping_list_path, class: 'btn-submit' %>
     <% if @recipe.author == current_user %>
-      <%= link_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), class: 'btn-link' %>
+      <%= link_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), class: 'btn-submit' %>
     <% end %>
   </div>
 
@@ -82,7 +81,7 @@
           <tr>
             <td><%= food.name %></td>
             <td><%= food_in_recipe.quantity %></td>
-            <td>$<%= food_in_recipe.quantity.to_i * food.price %></td>
+            <td>$<%= food_in_recipe.quantity * food.price %></td>
             <% if @recipe.author == current_user %>
               <td>
                 <div class="actions">

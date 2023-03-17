@@ -59,7 +59,7 @@ class RecipesController < ApplicationController
       recipe.recipe_foods.each do |recipe_food|
         food = foods.find { |f| f.id == recipe_food.food_id }
 
-        difference = recipe_food.quantity.to_i - food.quantity.to_i
+        difference = recipe_food.quantity - food.quantity
 
         if difference.positive?
           @missing_foods << Food.new(name: food.name, measurement_unit: food.measurement_unit,

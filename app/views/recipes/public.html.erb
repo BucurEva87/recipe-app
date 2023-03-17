@@ -11,12 +11,12 @@
           <% end %>
         </div>
         <div class="budget-info">
-          <p>Total food items: <%= recipe.recipe_foods.map { |rf| rf.quantity.to_i }.sum %></p>
-          <p>Total price: $<%= recipe.recipe_foods.map { |rf| rf.food.price.to_i }.sum %></p>
+          <p>Total food items: <%= recipe.recipe_foods.map { |rf| rf.quantity }.sum %></p>
+          <p>Total price: $<%= recipe.recipe_foods.map { |rf| rf.food.price }.sum %></p>
         </div>
       </div>
     <% end %>
   </div>
 
-  <%= link_to "Add Recipe", new_recipe_path %>
+  <%= link_to "Add Recipe", new_recipe_path, class: "add-food-btn" %>
 </div>
