@@ -13,7 +13,7 @@ RSpec.describe 'Food page', type: :system do
 
   it 'shows the  food Button' do
     visit foods_path
-    expect(page).to have_content('Add food')
+    expect(page).to have_content('Add Food')
   end
 
   it 'shows the delete button for food' do
