@@ -1,4 +1,10 @@
 <div id="recipes-index" class="section-wrapper">
+<% if @recipes.empty? %>
+  <div class="no-record-message">
+It seems there are no recipes at record at this moment. Would you like to add some?
+  </div>
+<% end %>
+
   <div class="recipes-container">
     <% @recipes.each do |recipe| %>
       <div class="recipe">
