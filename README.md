@@ -131,16 +131,15 @@ To start the server use the following command:
   rails server
 ```
 
-<!-- ### Run tests
+### Run tests
 
 To run tests, run the following command:
 
 Example command:
 
 ```sh
-  bin/rails test test/models/article_test.rb
+  rspec spec
 ```
---->
 
 <!-- ### Deployment
 
@@ -175,9 +174,9 @@ Example:
 
 > Describe 1 - 3 features you will add to the project.
 
-- [ ] **Register and login users**
-- [ ] **Add recipes, inventory and ingredients**
-- [ ] **Allow users to share their recipes**
+- [x] **Register and login users**
+- [x] **Add recipes, inventory and ingredients**
+- [x] **Allow users to share their recipes**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
