@@ -43,7 +43,7 @@ class RecipesController < ApplicationController
   end
 
   def public_recipes
-    @recipes = Recipe.where(public: true).includes(:author).order(created_at: :desc)
+    @recipes = Recipe.where(public: true).includes([:author, { recipe_foods: :food }]).order(created_at: :desc)
     render 'public'
   end
 
