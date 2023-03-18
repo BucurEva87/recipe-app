@@ -1,33 +1,22 @@
-require_relative '../rails_helper'
+require 'rails_helper'
 
-RSpec.describe 'Food page', type: :controller do
-  let(:user) { create(:new_user) }
-  it 'shows the Toggle button' do
-    visit food_recipes_path
-    expect(page).to have_button(class: 'toggle-btn')
+RSpec.describe "recipes/index.html.erb", type: :view do
+  include Devise::Test::ControllerHelpers
+
+  before(:each) do
+    @user = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'abramburica', confirmed_at: Time.now)
+    @recipes = assign(:recipes, [
+      Recipe.create!(name: 'Mancare de cartofi', preparation_time: 40, cooking_time: 110, description: 'Mancarica buna de cartofi', public: true, author: @user),
+      Recipe.create!(name: 'Oua umplute', preparation_time: 40, cooking_time: 110, description: 'Niste oua umplute', public: false, author: @user),
+      Recipe.create!(name: 'Friptura cu cartofi', preparation_time: 60, cooking_time: 90, description: 'Nu mancati ca ingrasa', public: true, author: @user)
+    ])
+    sign_in @user
   end
 
-  it 'shows the modify link of  foods' do
-    visit food_recipes_path
-    expect(page).to have_content('Modify')
-  end
-
-  it 'shows the Remove link of  foods' do
-    visit food_recipes_path
-    expect(page).to have_content('Remove')
-  end
-
-  it 'shows the food name' do
-    visit food_recipes_path
-    expect(page).to have_content('Food')
-  end
-
-  it 'shows the Quantity' do
-    visit food_recipes_path
-    expect(page).to have_content(@food1.price.to_s)
-  end
-  it 'shows the food Value' do
-    visit food_recipes_path
-    expect(page).to have_content(@food1.quantity.to_s)
+  it "displays a list of articles" do
+    render
+    @recipes.each do |recipe|
+      expect(rendered).to match recipe.name
+    end
   end
 end
