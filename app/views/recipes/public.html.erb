@@ -1,22 +1,26 @@
 <div id="recipes-public" class="section-wrapper">
-  <div class="recipes-container">
-    <% @recipes.each do |recipe| %>
-      <div class="recipe">
-        <div class="title-info">
-          <h2><%= link_to recipe.name, recipe_path(recipe), class: 'heading-link' %></h2>
-          <% if can? :destroy, recipe %>
-            <%= button_to 'Remove', recipe_path(recipe), method: :delete, class: 'btn-link btn-remove' %>
-          <% else %>
-            <span class="author">By: <%= recipe.author.name %></span>
-          <% end %>
+  <% if @recipes.empty? %>
+    <div class = "no-record-message">It seems there are no public recipes at the moment.</div>
+  <% else %>
+    <div class="recipes-container">
+      <% @recipes.each do |recipe| %>
+        <div class="recipe">
+          <div class="title-info">
+            <h2><%= link_to recipe.name, recipe_path(recipe), class: 'heading-link' %></h2>
+            <% if can? :destroy, recipe %>
+              <%= button_to 'Remove', recipe_path(recipe), method: :delete, class: 'btn-link btn-remove' %>
+            <% else %>
+              <span class="author">By: <%= recipe.author.name %></span>
+            <% end %>
+          </div>
+          <div class="budget-info">
+            <p>Total food items: <%= recipe.recipe_foods.map { |rf| rf.quantity }.sum %></p>
+            <p>Total price: $<%= recipe.recipe_foods.map { |rf| rf.food.price }.sum %></p>
+          </div>
         </div>
-        <div class="budget-info">
-          <p>Total food items: <%= recipe.recipe_foods.map { |rf| rf.quantity }.sum %></p>
-          <p>Total price: $<%= recipe.recipe_foods.map { |rf| rf.food.price }.sum %></p>
-        </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= link_to "Add Recipe", new_recipe_path, class: "add-food-btn" %>
 </div>
