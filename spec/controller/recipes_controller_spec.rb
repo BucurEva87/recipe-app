@@ -8,8 +8,8 @@ RSpec.describe RecipesController, type: :controller do
 
   before { sign_in user }
 
-  describe "GET #index" do
-    it "assigns current user as @user" do
+  describe 'GET #index' do
+    it 'assigns current user as @user' do
       get :index
       expect(assigns(:user)).to eq(user)
     end
@@ -21,50 +21,50 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested recipe as @recipe" do
+  describe 'GET #show' do
+    it 'assigns the requested recipe as @recipe' do
       get :show, params: { id: recipe.id }
       expect(assigns(:recipe)).to eq(recipe)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new recipe as @recipe" do
+  describe 'GET #new' do
+    it 'assigns a new recipe as @recipe' do
       get :new
       expect(assigns(:recipe)).to be_a_new(Recipe)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Recipe" do
-        expect {
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Recipe' do
+        expect do
           post :create, params: { recipe: valid_attributes }
-        }.to change(Recipe, :count).by(1)
+        end.to change(Recipe, :count).by(1)
       end
 
-      it "assigns a newly created recipe as @recipe" do
+      it 'assigns a newly created recipe as @recipe' do
         post :create, params: { recipe: valid_attributes }
         expect(assigns(:recipe)).to be_a(Recipe)
         expect(assigns(:recipe)).to be_persisted
       end
 
-      it "redirects to the index" do
+      it 'redirects to the index' do
         post :create, params: { recipe: valid_attributes }
         expect(response).to redirect_to(recipes_path)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested recipe" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested recipe' do
       recipe = create(:recipe, author: user)
-      expect {
+      expect do
         delete :destroy, params: { id: recipe.id }
-      }.to change(Recipe, :count).by(-1)
+      end.to change(Recipe, :count).by(-1)
     end
 
-    it "redirects to the recipes list" do
+    it 'redirects to the recipes list' do
       delete :destroy, params: { id: recipe.id }
       expect(response).to redirect_to(recipes_path)
     end
