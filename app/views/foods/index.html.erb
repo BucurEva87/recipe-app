@@ -1,0 +1,33 @@
+<div id="foods-index" class="section-wrapper">
+  <% if can? :create, Food %>
+    <p><% if @user_foods.empty? %>
+     <div class ="no-record-message"> It seems there are no foods in Inventory at the moment. Would you like to add some?
+     </div>
+    <% end %></p>
+    <%= link_to "Add Food", new_food_path, class: "add-food-btn" %>
+  <% end %>
+  <% unless @user_foods.empty? %>
+    <table class="food-container">
+      <thead>
+        <tr>
+          <th class="food-header">Food</th>
+          <th class="food-header">Measurement unit</th>
+          <th class="food-header">Unit Price</th>
+          <th class="food-header">Quantity</th>
+          <th class="food-header">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user_foods.each do |food| %>
+          <tr class="food-item">
+            <td class="food-name"><%= food.name %></td>
+            <td class="measurement-unit"><%= food.measurement_unit %></td>
+            <td class="unit-price"><%= food.price %></td>
+            <td class="quantity"><%= food.quantity %></td>
+            <td class="delete-action"><%= button_to 'Delete', food_url(food), method: :delete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

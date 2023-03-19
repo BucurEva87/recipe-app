@@ -1,0 +1,56 @@
+@import '../partials/variables';
+@import '../partials/section_wrapper';
+
+#recipes-general_shopping_list {
+  h1 {
+    margin-bottom: 5rem;
+    font-size: 4rem;
+  }
+
+  .general-info {
+    margin-bottom: 3rem;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .ingredients {
+    margin: 3rem auto;
+    width: 80%;
+    border: solid 0.2rem $black;
+
+    thead {
+      background-color: $gray3;
+
+      th {
+        padding: 1rem;
+        color: $white;
+        font-weight: bold;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 1.2rem;
+          border: solid 0.1rem #ddd;
+
+          .actions {
+            button {
+              color: $red;
+            }
+          }
+        }
+
+        &:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+
+        &:hover {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+}

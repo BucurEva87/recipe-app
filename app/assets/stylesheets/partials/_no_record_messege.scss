@@ -1,0 +1,10 @@
+@import 'variables';
+
+.no-record-message {
+  background-color: $gray4;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 $gray3;
+  margin-bottom: 6rem;
+}

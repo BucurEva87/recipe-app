@@ -1,0 +1,27 @@
+<div id="foods-new" class="section-wrapper">
+  <h1>Add your favourite food</h1>
+  <%= form_with model: @food, url: foods_path, button_html: { class: "add-food-btn" } do |f| %>
+    <div>
+      <%= f.label :name %> 
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :measurement_unit %>
+      <%= f.text_field :measurement_unit %>
+    </div>
+    <div>
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+<% if @food.errors[:price].any? %>
+    <div class="error">
+      <%= @food.errors.full_messages_for(:price).join(", ") %>
+    </div>
+  <% end %>
+    </div>
+    <div>
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity %>
+    </div>
+    <%= f.submit "Add Food" %>
+  <% end %>
+</div>
